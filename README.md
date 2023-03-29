@@ -1,5 +1,6 @@
 # TeamProject
 
+## Prep 1
 
 Jared Plummer
 
@@ -106,4 +107,35 @@ Making them collaborators
 ### What is your Git flow?
 
 Everyone should make a branch and work on that branch and then merge the changes to the main.
+
+
+## Prep 2
+
+### Ideas
+
+Connect 4
+
+HangMan
+
+### Summary of ideas
+
+Connect 4 is a two-player strategy game where players take turns dropping colored discs into a vertical grid. The objective of the game is to connect four discs of the same color in a row, either horizontally, vertically, or diagonally, while also preventing the opponent from doing the same.
+
+Hangman is a classic word-guessing game where one player thinks of a word and the other player guesses letters one at a time. The objective of the game is to guess the word correctly before the player runs out of guesses and the hangman is completed.
+
+### What problem or pain point does it solve? a. Keep it high level without going into too much detail. (3-4 sentences is enough)
+
+Connect 4 is a fun and engaging game that helps to develop strategic thinking, problem-solving, and spatial reasoning skills. It can be played by people of all ages and is a great way to pass the time.
+
+
+Hangman is a fun and engaging game that helps to develop vocabulary, spelling, and logic skills. It can be played by people of all ages and is a great way to pass the time while also improving language skills.
+
+### Minimum Viable Product (MVP) definition.
+
+- What is the minimum required for you to present on your demo day?
+
+The minimum viable product (MVP) for Connect 4 would be a functional game board with the ability to drop discs and detect when a player has won the game. It should also have a basic user interface that allows players to start and reset the game. Additional features such as multiplayer mode, sound effects, and high scores can be added later as the product evolves.
+
+The minimum viable product (MVP) for Hangman would be a functional game with a word to guess, a hangman graphic, and a way to input guesses. It should also have a basic user interface that allows players to start and reset the game. Additional features such as multiplayer mode, sound effects, and high scores can be added later as the product evolves.
+
 
