@@ -140,7 +140,4 @@ The minimum viable product (MVP) for Hangman would be a functional game with a w
 
 ## Prep 3 
 
-![PR Tool](https://trello.com/b/7kxKjIkC/web-design-development)
-
-
-
+[PR Tool](https://trello.com/b/7kxKjIkC/web-design-development)
