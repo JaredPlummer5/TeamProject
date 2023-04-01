@@ -1,18 +1,22 @@
 let Connect4Parent = document.getElementById("Connect4");
 
-let slot = function (postition, filledState, neighbors) {
-    this.postition = postition;// where it is on the board
-    this.filledState = null;// changes to the color of the piece
-    this.neighbors = neighbors;// array surrounding pieces
+let game = function () {
+    this.slots = slots; // this should be an array
+}
+
+let slot = function (postition, color, neighbors) {
+    this.postition = postition; // where it is on the board
+    this.color = null; // changes to the color of the piece
+    this.neighbors = neighbors; // array surrounding pieces
 
 }
 
-let game = function(){
-    this.slots = slots;// this should be an array
-}
+game.slots = new slot({}, null, []);
+//console.log(game.slots)
+
+let slotsArray = [];
 
 
-let objectName = new slot({}, null, [{x: 1, y: 2},{x: 2, y: 1},{x: 2, y: 2}]);
 
 function board() {
 
@@ -27,7 +31,12 @@ function board() {
             placeHolder.innerHTML = `PlaceHolder${j}x${i}`;
             placeHolderParent.className = `PlaceHoldersParent`;
             placeHolderParent.append(placeHolder);
-            objectName.postition = {x: j, y: i};
+            let newSlot = new slot({}, null, [{ x: 1, y: 2 }, { x: 2, y: 1 }, { x: 2, y: 2 }]);
+            newSlot.placeHolder = placeHolder.id
+            //console.log(newSlot);
+            newSlot.postition = { x: j, y: i };
+            slotsArray.push(newSlot);
+            //console.log(newSlot.postition);
             // We need to create an array of objects and the index of i instead of putting object name
 
         }
@@ -36,11 +45,14 @@ function board() {
     }
 
 }
-board()
+
+board();
+
+console.log(slotsArray);
 
 let Turn = 1;
 function SelectedPlayer(event) {
-    let pieces = undefined;
+    let pieces = null;
     let ClasslistArray = Array.from(event.target.classList)
     if (ClasslistArray.includes("PlaceHolders")) {
         if (event.target.style.backgroundColor == "") {
@@ -48,14 +60,36 @@ function SelectedPlayer(event) {
             if ((Turn % 2) === 1) {
                 pieces = "red";
 
-            } else {
+            } else if ((Turn % 2) === 0) {
                 pieces = "blue";
+            }else{
+                pieces = null
             }
-            event.target.style.backgroundColor = pieces
+
+
+            event.target.style.backgroundColor = pieces;
+            //let positionArray = slotsArray.map(postition => postition.postition)
+            //console.log("This is a array of positions",positionArray);
+
+
+            for (let i = 0; i < slotsArray.length; i++) {
+
+                if (slotsArray[i].color !== pieces && event.target.id == slotsArray[i].placeHolder) {
+                    
+                    slotsArray[i].color = pieces;
+                    
+
+                }
+                else{
+                    console.log("youre here")
+                }
+               
+                
+            }
+            console.log(slotsArray);
             Turn++
         }
     }
 }
-
 Connect4Parent.addEventListener("click", SelectedPlayer)
 
