@@ -32,7 +32,7 @@ Fredrick - Problem solving
 
 Javion - Planning
 
-Jay - 
+Jay -
 
 ### Knowing that every person in your team needs to understand all aspects of the project, how do you plan to approach the day-to-day work?
 
@@ -90,7 +90,6 @@ To ensure effective communication, it is important to express our ideas at the b
 
 Breaking down what we need to do it smaller sections. For example, the lab instructions break down each component we need to have.
 
-
 ## What project management tool will be used?
 
 Developer tools and Calendar
@@ -103,11 +102,9 @@ README, HTML, CSS and JavaScript files
 
 Making them collaborators
 
-
 ### What is your Git flow?
 
 Everyone should make a branch and work on that branch and then merge the changes to the main.
-
 
 ## Prep 2
 
@@ -127,10 +124,9 @@ Hangman is a classic word-guessing game where one player thinks of a word and th
 
 Connect 4 is a fun and engaging game that helps to develop strategic thinking, problem-solving, and spatial reasoning skills. It can be played by people of all ages and is a great way to pass the time.
 
-
 Hangman is a fun and engaging game that helps to develop vocabulary, spelling, and logic skills. It can be played by people of all ages and is a great way to pass the time while also improving language skills.
 
-### Minimum Viable Product (MVP) definition.
+### Minimum Viable Product (MVP) definition
 
 - What is the minimum required for you to present on your demo day?
 
@@ -138,10 +134,8 @@ The minimum viable product (MVP) for Connect 4 would be a functional game board 
 
 The minimum viable product (MVP) for Hangman would be a functional game with a word to guess, a hangman graphic, and a way to input guesses. It should also have a basic user interface that allows players to start and reset the game. Additional features such as multiplayer mode, sound effects, and high scores can be added later as the product evolves.
 
-## Prep 3 
+## Prep 3
 
 [PR Tool](https://trello.com/b/7kxKjIkC/web-design-development)
 
 [Flow Chart](https://lucid.app/lucidchart/6e469aa4-510e-49da-b974-393dff313641/edit?beaconFlowId=DF95FFBA2F745249&invitationId=inv_4d31b470-b94f-4898-9e04-29074f0c22c9&page=lddKKyaC76h~#)
-
-
