@@ -45,16 +45,27 @@ function board() {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
             // Sets a variable equal to the id and  x = (the number that reprensent the column) X  y = (how many times the user clicked).
             // Slices the column id to get the row and uses the clicks property for the hieght
+            for (let i = 6; i > placeHolderParent.clicks; i--) {
+
+                setTimeout(() => {
+                    let animationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
+                    animationTest.style.backgroundColor = 'purple'
+                    // Calls the function that turns slotToFill red or blue depending on whose turn it is.
+                    placeHolderParent.clicks++;
+                    //Adds 1 to the clicked property if the user clicked the column
+                    console.log("g", animationTest)
+                }, 1000 * (6/i))
+
+
+            }
             SelectedPlayer(slotToFill);
-            // Calls the function that turns slotToFill red or blue depending on whose turn it is.
-            placeHolderParent.clicks++;
-            //Adds 1 to the clicked property if the user clicked the column
-            
+
+
+
 
         });
 
         for (let i = 6; i >= 1; i--) {
-
             let placeHolder = document.createElement("div");
             // Creates the slots
             placeHolder.id = `PlaceHolder${j}x${i}`;
@@ -132,3 +143,4 @@ function SelectedPlayer(slotToFill) {
     Turn++
     // Adds one to the Turn value each time the user clicks
 }
+
