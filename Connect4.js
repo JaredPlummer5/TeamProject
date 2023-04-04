@@ -70,7 +70,7 @@ async function board() {
 
                     //Adds 1 to the clicked property if the user clicked the column
                     console.log("g", animationTest)
-                }, 1000 * (7/(i+1)))
+                }, 1000 * (2/(i+1)))
 
 
             }
