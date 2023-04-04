@@ -6,15 +6,16 @@ let game = function (slots) {
     this.slots = slots; // // Array of all of the new slot objects
 }
 
+
 let slot = function (position) {
     this.position = position; // where it is on the board
+
     this.color = null; // changes to the color of the piece
 
 }
 
 // let winning = function (neighbors) {
 //     this.neighbors = neighbors; // array surrounding pieces
-// }
 
 
 // let column = function (clicks, coloumnHTML, placeHolderParentName) {
@@ -30,7 +31,6 @@ let slot = function (position) {
 let slotsArray = new game([]);
 // Creates an object that set the slots property equal to an empty array
 
-let columnArray = [];
 
 let childArrays = [];
 
@@ -45,7 +45,9 @@ async function board() {
         // And sets 1 as the beginning value.
 
 
+
         //==================GENERATING TABLE=========================================
+
 
 
         placeHolderParent.addEventListener("click", function (event) {
@@ -91,6 +93,7 @@ async function board() {
 
         });
 
+
        
 
 //==================GENERATING TABLE=========================================
@@ -98,6 +101,7 @@ async function board() {
         for (let i = 6; i >= 1; i--) {
 
             var placeHolder = document.createElement("div");
+
 
             // Creates the slots
             placeHolder.id = `PlaceHolder${j}x${i}`;
@@ -119,11 +123,19 @@ async function board() {
             // Creates a new object for each slot with the position and color properties
 
             newSlot.placeHolder = placeHolder.id
+
+         
+
             //console.log("Added the property placeholder to newSlot", newSlot.placeHolder)
+
 
             // Creates a new property equal to the id for each slot 
 
+
+
+
             newSlot.position = { x: j, y: i };
+
             // Sets the position property of each slot object
 
             placeHolder.objectPositionX = j;
@@ -145,6 +157,8 @@ async function board() {
 
         Connect4Parent.append(placeHolderParent);
         // Appends each column to the div on the body
+
+
         //==================GENERATING TABLE=========================================
 
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
@@ -186,9 +200,16 @@ async function board() {
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
 
 
+
     }
+
 }
 board();
+
+
+console.log(slotsArray.slots);
+// Array of all of the new slot objects
+
 
 
 
@@ -205,6 +226,7 @@ function SelectedPlayer(slotToFill) {
         pieces = null;
     }
     slotToFill.style.backgroundColor = pieces;
+
     let slotObject = slotsArray.slots.find(function (element) {
         
         if (element && element.position && element.position.x == slotToFill.objectPositionX && element.position.y == slotToFill.objectPositionY) {
@@ -217,6 +239,7 @@ function SelectedPlayer(slotToFill) {
         slotObject.color = pieces
         console.log("slotsArray!!!!!!", slotsArray.slots);
     }
+
     Turn++
 }
 
