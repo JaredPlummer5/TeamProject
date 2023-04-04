@@ -9,13 +9,13 @@ let game = function (slots) {
 let slot = function (postition, color) {
     this.postition = postition; // where it is on the board
     this.color = null; // changes to the color of the piece
-
+// problem 1
 }
 
 let winning = function (neighbors) {
     this.neighbors = neighbors; // array surrounding pieces
 }
-
+// problem 2
 
 let column = function () {
     this.clicks = 0;
@@ -24,7 +24,7 @@ let column = function () {
         console.log("This is the filled Slot method");
     }
 }
-
+// problem 3
 
 let slotsArray = new game([]);
 // Creates an object that set the slots property equal to an empty array
@@ -62,9 +62,11 @@ async function board() {
             for (let i = 6; i >= placeHolderParent.clicks; i--) {
 
                 setTimeout(() => {
-                    let lastlAnimationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i+1}`)
+                    let aniArray = []
+                    aniArray.push(placeHolderParent)
+                    let lastlAnimationTest = document.querySelector(`#PlaceHolder${aniArray.id.slice(-7, -6)}x${i+1}`)
                     lastlAnimationTest.style.backgroundColor = "white"
-                    let animationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
+                    let animationTest = document.querySelector(`#PlaceHolder${aniArray.id.slice(-7, -6)}x${i}`);
                     animationTest.style.backgroundColor = pieces
                     // Calls the function that turns slotToFill red or blue depending on whose turn it is.
 
@@ -77,6 +79,7 @@ async function board() {
             placeHolderParent.clicks++;
             // SelectedPlayer(slotToFill);
             Turn++
+            console.log(slotsArray.slots)
 
 
 
@@ -114,7 +117,7 @@ async function board() {
 
             slotsArray.slots.push(newSlot);
             // Pushes each slot to an array(slots) of an object that's called slotsArray
-
+            // Added Array could be problem, not sure 
         }
         placeHolderParent.id = `PlaceHolder${j}Parent`;
         // Makes anm id for each column
