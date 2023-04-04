@@ -53,7 +53,7 @@ async function board() {
             if ((Turn % 2) === 1) {
                 pieces = "red";
                 // Reassigns the value if Turn is an odd number
-        
+
             } else if ((Turn % 2) === 0) {
                 pieces = "blue";
                 // Reassigns the value if Turn is an even number
@@ -65,7 +65,7 @@ async function board() {
             for (let i = 6; i >= placeHolderParent.clicks; i--) {
 
                 setTimeout(() => {
-                    let lastlAnimationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i+1}`)
+                    let lastlAnimationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i + 1}`)
                     lastlAnimationTest.style.backgroundColor = "white"
                     let animationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
                     animationTest.style.backgroundColor = pieces
@@ -73,7 +73,7 @@ async function board() {
 
                     //Adds 1 to the clicked property if the user clicked the column
                     console.log("g", animationTest)
-                }, 1000 * (7/(i+1)))
+                }, 1000 * (7 / (i + 1)))
 
 
             }
@@ -87,10 +87,7 @@ async function board() {
 
         });
 
-        for (let i = 6; i >= 1; i--) {
-            let placeHolder = document.createElement("div");
-
-//==================GENERATING TABLE=========================================
+        //==================GENERATING TABLE=========================================
         for (let i = 6; i >= 1; i--) {
 
             var placeHolder = document.createElement("div");
@@ -115,7 +112,7 @@ async function board() {
             // Creates a new object for each slot with the position and color properties
 
             newSlot.placeHolder = placeHolder.id
-  
+
             // Creates a new property equal to the id for each slot 
 
 
@@ -135,7 +132,7 @@ async function board() {
         // Appends each column to the div on the body
         //==================GENERATING TABLE=========================================
 
-    //===============ADDING ONCLICKS TO EACH COLUMN==================================
+        //===============ADDING ONCLICKS TO EACH COLUMN==================================
         placeHolderParent.addEventListener("click", function (event) {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
             // console.log(slotToFill);
@@ -164,7 +161,7 @@ async function board() {
             }
 
         });
-    //===============ADDING ONCLICKS TO EACH COLUMN==================================
+        //===============ADDING ONCLICKS TO EACH COLUMN==================================
 
 
     }
@@ -192,10 +189,10 @@ function SelectedPlayer(slotToFill) {
         // Set the variable equal to null if the first to cases are not true
     }
     slotToFill.style.backgroundColor = pieces;
-    let slotObject = slotsArray.slots.find(function (element){
-        if(element.postition.x == slotToFill.objectPositionX && element.postition.y == slotToFill.objectPositionY){
+    let slotObject = slotsArray.slots.find(function (element) {
+        if (element.postition.x == slotToFill.objectPositionX && element.postition.y == slotToFill.objectPositionY) {
             return true
-        }else{
+        } else {
             return false
         }
     })
@@ -205,4 +202,5 @@ function SelectedPlayer(slotToFill) {
     Turn++
     // Adds one to the Turn value each time the user clicks
 }
+
 
