@@ -34,7 +34,7 @@ let columnArray = [];
 
 
 
-function board() {
+async function board() {
 
     for (let j = 1; j <= 7; j++) {
         let placeHolderParent = document.createElement("div");
@@ -43,10 +43,58 @@ function board() {
         // Put a property on each column for how many clicks each column has. 
         // And sets 1 as the beginning value.
 
+
+        placeHolderParent.addEventListener("click", function (event) {
+            let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
+            // Sets a variable equal to the id and  x = (the number that reprensent the column) X  y = (how many times the user clicked).
+            // Slices the column id to get the row and uses the clicks property for the hieght
+            let pieces = null;
+            // Set a varible equal to null 
+            if ((Turn % 2) === 1) {
+                pieces = "red";
+                // Reassigns the value if Turn is an odd number
+        
+            } else if ((Turn % 2) === 0) {
+                pieces = "blue";
+                // Reassigns the value if Turn is an even number
+            } else {
+                pieces = null;
+                // Set the variable equal to null if the first to cases are not true
+            }
+            // slotToFill.style.backgroundColor = pieces;
+            for (let i = 6; i >= placeHolderParent.clicks; i--) {
+
+                setTimeout(() => {
+                    let lastlAnimationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i+1}`)
+                    lastlAnimationTest.style.backgroundColor = "white"
+                    let animationTest = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
+                    animationTest.style.backgroundColor = pieces
+                    // Calls the function that turns slotToFill red or blue depending on whose turn it is.
+
+                    //Adds 1 to the clicked property if the user clicked the column
+                    console.log("g", animationTest)
+                }, 1000 * (7/(i+1)))
+
+
+            }
+            placeHolderParent.clicks++;
+            // SelectedPlayer(slotToFill);
+            Turn++
+
+
+
+
+
+        });
+
+        for (let i = 6; i >= 1; i--) {
+            let placeHolder = document.createElement("div");
+
 //==================GENERATING TABLE=========================================
         for (let i = 6; i >= 1; i--) {
 
             var placeHolder = document.createElement("div");
+
             // Creates the slots
             placeHolder.id = `PlaceHolder${j}x${i}`;
             // Adds an id to the slots depending on the position
@@ -157,3 +205,4 @@ function SelectedPlayer(slotToFill) {
     Turn++
     // Adds one to the Turn value each time the user clicks
 }
+
