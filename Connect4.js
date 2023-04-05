@@ -1,3 +1,6 @@
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 let Connect4Parent = document.getElementById("Connect4");
 // Targets the div on the HTML file
@@ -105,11 +108,18 @@ function board() {
 
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
-        placeHolderParent.addEventListener("click", function (event) {
+        placeHolderParent.addEventListener("click", async function (event) {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
             // //console.log(slotToFill);
             // Sets a variable equal to the id and  x = (the number that reprensent the column) X  y = (how many times the user clicked).
             // Slices the column id to get the row and uses the clicks property for the hieght
+            for(let i = 6; i > placeHolderParent.clicks; i--) {
+                let slotToHighlight = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
+                slotToHighlight.style.backgroundColor = "purple"
+                await timeout(1000)
+                slotToHighlight.style.backgroundColor = "white"
+
+            }
             SelectedPlayer(slotToFill);
             // Calls the function that turns slotToFill red or blue depending on whose turn it is.
 
