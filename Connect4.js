@@ -30,7 +30,7 @@ let slotsArray = new game([]);
 // Creates an object that set the slots property equal to an empty array
 
 
-
+let aniArray = []
 
 async function board() {
 
@@ -62,7 +62,7 @@ async function board() {
             for (let i = 6; i >= placeHolderParent.clicks; i--) {
 
                 setTimeout(() => {
-                    let aniArray = []
+                 
                     aniArray.push(placeHolderParent)
                     let lastlAnimationTest = document.querySelector(`#PlaceHolder${aniArray.id.slice(-7, -6)}x${i+1}`)
                     lastlAnimationTest.style.backgroundColor = "white"
