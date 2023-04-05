@@ -191,6 +191,7 @@ function winningPossibilities() {
     return possibilities;
 
 }
+let gif = []
 let allWinningPossibilities = winningPossibilities();
 console.log(allWinningPossibilities);
 
@@ -252,7 +253,7 @@ function mappingTheWinnerCombinations(filledSlot) {
                             pTagTie.style.color = "white";
                             pTagTie.style.padding = "15px";
                             pTagTie.innerHTML = "Yall both suck";
-                            screenBlocker.append(pTagBlue);
+                            screenBlocker.append(pTagTie);
                             document.body.append(screenBlocker);
                             
                         }
