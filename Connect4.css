@@ -58,6 +58,16 @@ footer p {
 
 }
 
-@keyframes{
-    
-}
+.slot-animate {
+    animation: slot-animation 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes slot-animation {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  
