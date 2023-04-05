@@ -109,6 +109,7 @@ function board() {
         //==================GENERATING TABLE=========================================
 
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
+        //===============ADDING ONCLICKS TO EACH COLUMN==================================
         placeHolderParent.addEventListener("click", function (event) {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
             // //console.log(slotToFill);
@@ -124,15 +125,14 @@ function board() {
 
             
         });
-        //===============ADDING ONCLICKS TO EACH COLUMN==================================
-
+        
 
 
     }
 
 }
 board();
-
+let PlaceHolderParentClassName = document.querySelectorAll(".PlaceHoldersParent")
 
 console.log(slotsArray.slots);
 // Array of all of the new slot objects
@@ -247,9 +247,29 @@ function mappingTheWinnerCombinations(filledSlot) {
                         if(possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red"){
 
                             console.log("Player 1 wins")
+                            let screenBlocker = document.createElement("div")
+                            screenBlocker.id = "screenBlockerId"
+                            let pTagRed = document.createElement("p")
+                            pTagRed.style.backgroundColor = "black"
+                            pTagRed.style.color = "red"
+                            pTagRed.style.padding = "15px"
+                            pTagRed.innerHTML = "Player 1 Wins"
+                            screenBlocker.append(pTagRed)
+                            document.body.append(screenBlocker)
 
                         }else if(possibilities[k][j].color == "blue" && possibilities[k][j+1].color == "blue" && possibilities[k][j+2].color == "blue" && possibilities[k][j+3].color == "blue"){
                             console.log("Player 2 wins")
+                            let screenBlocker = document.createElement("div")
+                            screenBlocker.id = "screenBlockerId"
+                            let pTagBlue = document.createElement("p")
+                            pTagBlue.style.backgroundColor = "black"
+                            pTagBlue.style.color = "blue"
+                            pTagBlue.style.padding = "15px"
+                            pTagBlue.innerHTML = "Player 2 Wins"
+                            screenBlocker.append(pTagBlue)
+                            document.body.append(screenBlocker)
+                            
+
                         }else{
 
                             console.log("Keep playing");
