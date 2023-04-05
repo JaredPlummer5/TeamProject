@@ -74,9 +74,8 @@ footer p {
   #screenBlockerId{
     z-index:2;
     background: transparent;
-    width: 800px;
-    height: 495px;
-    border:5px solid red;
+    width: 900px;
+    height: 700px;
     position:absolute;
     bottom :30px;
     display:flex;
