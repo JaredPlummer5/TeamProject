@@ -73,7 +73,7 @@ function board() {
             // Creates a new object for each slot with the position and color properties
 
             newSlot.placeHolder = placeHolder.id
-  
+
             // Creates a new property equal to the id for each slot 
 
 
@@ -113,14 +113,15 @@ function board() {
             // //console.log(slotToFill);
             // Sets a variable equal to the id and  x = (the number that reprensent the column) X  y = (how many times the user clicked).
             // Slices the column id to get the row and uses the clicks property for the hieght
-            for(let i = 6; i > placeHolderParent.clicks; i--) {
+            SelectedPlayer(slotToFill);
+            for (let i = 6; i > placeHolderParent.clicks; i--) {
                 let slotToHighlight = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
-                slotToHighlight.style.backgroundColor = "purple"
+                slotToHighlight.style.backgroundColor = pieces
                 await timeout(1000)
                 slotToHighlight.style.backgroundColor = "white"
 
             }
-            SelectedPlayer(slotToFill);
+            Turn++
             // Calls the function that turns slotToFill red or blue depending on whose turn it is.
 
 
@@ -128,9 +129,9 @@ function board() {
 
             placeHolderParent.clicks++;
 
-            
+
         });
-        
+
 
 
     }
@@ -147,22 +148,22 @@ console.log(slotsArray.slots);
 
 let Turn = 1;
 // Set a variable to keep track of the users' turns
+let pieces = null;
 
 function SelectedPlayer(slotToFill) {
     if (!slotToFill) {
         return;
     }
 
-    let pieces = null;
     if ((Turn % 2) === 1) {
         pieces = "red";
+        colorPieces = pieces;
     } else if ((Turn % 2) === 0) {
         pieces = "blue";
+        colorPieces = pieces;
     } else {
         pieces = null;
     }
-
-    slotToFill.style.backgroundColor = pieces;
 
 
     for (let k = 0; k < slotsArray.slots.length; k++) {
@@ -174,6 +175,10 @@ function SelectedPlayer(slotToFill) {
                 mappingTheWinnerCombinations(slotsArray.slots[k][j]);
 
                 //console.log(slotsArray.slots)
+                function delayAni() {
+                    slotToFill.style.backgroundColor = pieces;
+                }
+                setTimeout(delayAni, 5000)
 
             }
             // find the corresponding slot object in the slotsArray and set its color property
@@ -181,11 +186,9 @@ function SelectedPlayer(slotToFill) {
         }
     }
 
-    Turn++;
+    // Turn++;
 
 }
-
-
 
 let possibilities = [];
 function winningPossibilities() {
@@ -213,11 +216,11 @@ function winningPossibilities() {
     for (let j = 0; j < 4; j++) {
         for (let i = 0; i < 4; i++) {
 
-         possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]]);
+            possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]]);
         }
 
     }
-    
+
 
     // Diagonal wins from the top right to left down
     for (let j = 3; j < 7; j++) {
@@ -243,13 +246,13 @@ function mappingTheWinnerCombinations(filledSlot) {
             if (possibilities[k][j]) {
                 if (possibilities[k][j].position.x == filledSlotPosition.x && possibilities[k][j].position.y == filledSlotPosition.y) {
                     //console.log(possibilities[k], possibilities[k][j].position.x, possibilities[k][j].position.y);
-                    
-                    
-                    
-                    if (possibilities[k][j] && possibilities[k][j+1] && possibilities[k][j+2] && possibilities[k][j+3] && possibilities[k][j].color == filledSlotColor) {
-                        console.log(possibilities[k][j], possibilities[k][j+1], possibilities[k][j+2], possibilities[k][j+3])
 
-                        if(possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red"){
+
+
+                    if (possibilities[k][j] && possibilities[k][j + 1] && possibilities[k][j + 2] && possibilities[k][j + 3] && possibilities[k][j].color == filledSlotColor) {
+                        console.log(possibilities[k][j], possibilities[k][j + 1], possibilities[k][j + 2], possibilities[k][j + 3])
+
+                        if (possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red") {
 
                             console.log("Player 1 wins")
                             let screenBlocker = document.createElement("div")
@@ -262,7 +265,7 @@ function mappingTheWinnerCombinations(filledSlot) {
                             screenBlocker.append(pTagRed)
                             document.body.append(screenBlocker)
 
-                        }else if(possibilities[k][j].color == "blue" && possibilities[k][j+1].color == "blue" && possibilities[k][j+2].color == "blue" && possibilities[k][j+3].color == "blue"){
+                        } else if (possibilities[k][j].color == "blue" && possibilities[k][j + 1].color == "blue" && possibilities[k][j + 2].color == "blue" && possibilities[k][j + 3].color == "blue") {
                             console.log("Player 2 wins")
                             let screenBlocker = document.createElement("div")
                             screenBlocker.id = "screenBlockerId"
@@ -273,9 +276,9 @@ function mappingTheWinnerCombinations(filledSlot) {
                             pTagBlue.innerHTML = "Player 2 Wins"
                             screenBlocker.append(pTagBlue)
                             document.body.append(screenBlocker)
-                            
 
-                        }else{
+
+                        } else {
 
                             console.log("Keep playing");
                         }
