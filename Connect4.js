@@ -116,7 +116,7 @@ function board() {
             SelectedPlayer(slotToFill);
             for (let i = 6; i > placeHolderParent.clicks; i--) {
                 let slotToHighlight = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
-                slotToHighlight.style.backgroundColor = pieces
+                slotToHighlight.style.backgroundColor = 'purple'
                 await timeout(1000)
                 slotToHighlight.style.backgroundColor = "white"
 
@@ -164,6 +164,10 @@ function SelectedPlayer(slotToFill) {
     } else {
         pieces = null;
     }
+    console.log("colorPieces",colorPieces) 
+    console.log("pieces",pieces)
+
+    
 
 
     for (let k = 0; k < slotsArray.slots.length; k++) {
@@ -175,11 +179,16 @@ function SelectedPlayer(slotToFill) {
                 mappingTheWinnerCombinations(slotsArray.slots[k][j]);
 
                 //console.log(slotsArray.slots)
-                function delayAni() {
-                    slotToFill.style.backgroundColor = pieces;
+                for (let o = 0; o < PlaceHolderParentClassName.length; o++) {
+                    let time = 9000
+                    for (let i = 6; i > PlaceHolderParentClassName[o].clicks; i--) {
+                        function delayAni() {
+                            slotToFill.style.backgroundColor = pieces;
+                        }
+                        setTimeout(delayAni, time)
+                        time = time - 1000
+                    }
                 }
-                setTimeout(delayAni, 5000)
-
             }
             // find the corresponding slot object in the slotsArray and set its color property
 
