@@ -205,12 +205,14 @@ function winningPossibilities() {
     }
 
     //Diagnal win from the top Left to the right down
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 4; j++) {
         for (let i = 0; i < 4; i++) {
-            possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]]);
+
+         possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]]);
         }
 
     }
+    
 
     // Diagonal wins from the top right to left down
     for (let j = 3; j < 7; j++) {
@@ -219,7 +221,9 @@ function winningPossibilities() {
         }
     }
 
+
     return possibilities;
+
 }
 let allWinningPossibilities = winningPossibilities();
 console.log(allWinningPossibilities);
