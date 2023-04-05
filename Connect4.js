@@ -14,26 +14,9 @@ let slot = function (position) {
 
 }
 
-// let winning = function (neighbors) {
-//     this.neighbors = neighbors; // array surrounding pieces
-
-
-// let column = function (clicks, coloumnHTML, placeHolderParentName) {
-//     this.clicks = 1;
-//     this.coloumnHTML = coloumnHTML;
-//     this.placeHolderParentName = placeHolderParentName;
-//     this.filledSlot = function () {
-//         // //console.log("This is the filled Slot method");
-//     }
-// }
-
-
 let slotsArray = new game([]);
 // Creates an object that set the slots property equal to an empty array
-
-
 let childArrays = [];
-
 
 function board() {
 
@@ -94,9 +77,8 @@ function board() {
 
             childArrays.push(newSlot);
 
-            //let matrix = []
+           
         }
-        //console.log(childArrays);
         slotsArray.slots.push(childArrays);
         childArrays = [];
         placeHolderParent.id = `PlaceHolder${j}Parent`;
@@ -104,32 +86,19 @@ function board() {
 
         Connect4Parent.append(placeHolderParent);
         // Appends each column to the div on the body
-
-
         //==================GENERATING TABLE=========================================
 
-        //===============ADDING ONCLICKS TO EACH COLUMN==================================
+        
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
         placeHolderParent.addEventListener("click", function (event) {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
-            // //console.log(slotToFill);
             // Sets a variable equal to the id and  x = (the number that reprensent the column) X  y = (how many times the user clicked).
             // Slices the column id to get the row and uses the clicks property for the hieght
             SelectedPlayer(slotToFill);
             // Calls the function that turns slotToFill red or blue depending on whose turn it is.
-
-
-
-
             placeHolderParent.clicks++;
-
-            
         });
-        
-
-
     }
-
 }
 board();
 let PlaceHolderParentClassName = document.querySelectorAll(".PlaceHoldersParent")
@@ -162,14 +131,11 @@ function SelectedPlayer(slotToFill) {
 
     for (let k = 0; k < slotsArray.slots.length; k++) {
         for (let j = 0; j < 6; j++) {
-            //console.log(slotToFill.id, slotsArray.slots[k][j].placeHolder)
+            
             if (slotToFill.id == slotsArray.slots[k][j].placeHolder) {
 
                 slotsArray.slots[k][j].color = pieces;
                 mappingTheWinnerCombinations(slotsArray.slots[k][j]);
-
-                //console.log(slotsArray.slots)
-
             }
             // find the corresponding slot object in the slotsArray and set its color property
 
@@ -225,6 +191,7 @@ function winningPossibilities() {
     return possibilities;
 
 }
+let gif = []
 let allWinningPossibilities = winningPossibilities();
 console.log(allWinningPossibilities);
 
@@ -247,11 +214,14 @@ function mappingTheWinnerCombinations(filledSlot) {
                         if(possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red"){
 
                             console.log("Player 1 wins")
-                            let screenBlocker = document.createElement("div")
-                            screenBlocker.id = "screenBlockerId"
-                            let pTagRed = document.createElement("p")
+                            let screenBlocker = document.createElement("div");
+                            //let celebration = document.createElement("img")
+                            
+                            screenBlocker.id = "screenBlockerId";
+                            let pTagRed = document.createElement("p");
                             pTagRed.style.backgroundColor = "black"
                             pTagRed.style.color = "red"
+                            pTagRed.style.borderRadius = "10px"
                             pTagRed.style.padding = "15px"
                             pTagRed.innerHTML = "Player 1 Wins"
                             screenBlocker.append(pTagRed)
@@ -260,9 +230,11 @@ function mappingTheWinnerCombinations(filledSlot) {
                         }else if(possibilities[k][j].color == "blue" && possibilities[k][j+1].color == "blue" && possibilities[k][j+2].color == "blue" && possibilities[k][j+3].color == "blue"){
                             console.log("Player 2 wins")
                             let screenBlocker = document.createElement("div")
+                            
                             screenBlocker.id = "screenBlockerId"
                             let pTagBlue = document.createElement("p")
                             pTagBlue.style.backgroundColor = "black"
+                            pTagBlue.style.borderRadius = "10px"
                             pTagBlue.style.color = "blue"
                             pTagBlue.style.padding = "15px"
                             pTagBlue.innerHTML = "Player 2 Wins"
@@ -270,14 +242,25 @@ function mappingTheWinnerCombinations(filledSlot) {
                             document.body.append(screenBlocker)
                             
 
-                        }else{
-
-                            console.log("Keep playing");
+                        }else if (Turn == 42){
+                            console.log("Tie")
+                            let screenBlocker = document.createElement("div");
+                            
+                            screenBlocker.id = "screenBlockerId";
+                            let pTagTie = document.createElement("p");
+                            pTagTie.style.backgroundColor = "black";
+                            pTagTie.style.borderRadius = "10px";
+                            pTagTie.style.color = "white";
+                            pTagTie.style.padding = "15px";
+                            pTagTie.innerHTML = "Yall both suck";
+                            screenBlocker.append(pTagTie);
+                            document.body.append(screenBlocker);
+                            
                         }
 
                     }
                 }
-                //console.log("Are the colors the same",possibilities[k][j].color, filledSlotColor);
+              
             }
 
         }
@@ -288,4 +271,3 @@ function mappingTheWinnerCombinations(filledSlot) {
 
 console.log(slotsArray.slots)
 
-//for(let k = 0; k < )
