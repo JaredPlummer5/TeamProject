@@ -40,7 +40,7 @@ function board() {
             placeHolder.className = `PlaceHolders`;
             // Adds a class name to each slot
 
-            placeHolder.innerHTML = `PlaceHolder${j}x${i}`;
+            //placeHolder.innerHTML = `PlaceHolder${j}x${i}`;
             // Helps the development team keep track of the position of the div
 
             placeHolderParent.className = `PlaceHoldersParent`;
