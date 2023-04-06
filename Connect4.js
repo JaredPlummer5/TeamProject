@@ -116,7 +116,7 @@ function board() {
             SelectedPlayer(slotToFill);
             for (let i = 6; i > placeHolderParent.clicks; i--) {
                 let slotToHighlight = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${i}`);
-                slotToHighlight.style.backgroundColor = 'purple'
+                slotToHighlight.style.backgroundColor = pieces
                 await timeout(1000)
                 slotToHighlight.style.backgroundColor = "white"
 
@@ -164,8 +164,8 @@ function SelectedPlayer(slotToFill) {
     } else {
         pieces = null;
     }
-    console.log("colorPieces",colorPieces) 
-    console.log("pieces",pieces)
+    // console.log("colorPieces",colorPieces) 
+    // console.log("pieces",pieces)
 
     
 
