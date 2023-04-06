@@ -54,7 +54,7 @@ function board() {
 
             newSlot.placeHolder = placeHolder.id
 
-         
+
 
             //console.log("Added the property placeholder to newSlot", newSlot.placeHolder)
 
@@ -77,7 +77,7 @@ function board() {
 
             childArrays.push(newSlot);
 
-           
+
         }
         slotsArray.slots.push(childArrays);
         childArrays = [];
@@ -88,7 +88,7 @@ function board() {
         // Appends each column to the div on the body
         //==================GENERATING TABLE=========================================
 
-        
+
         //===============ADDING ONCLICKS TO EACH COLUMN==================================
         placeHolderParent.addEventListener("click", function (event) {
             let slotToFill = document.querySelector(`#PlaceHolder${placeHolderParent.id.slice(-7, -6)}x${placeHolderParent.clicks}`);
@@ -131,7 +131,7 @@ function SelectedPlayer(slotToFill) {
 
     for (let k = 0; k < slotsArray.slots.length; k++) {
         for (let j = 0; j < 6; j++) {
-            
+
             if (slotToFill.id == slotsArray.slots[k][j].placeHolder) {
 
                 slotsArray.slots[k][j].color = pieces;
@@ -153,12 +153,15 @@ function winningPossibilities() {
     // All of the j values are the x axis
 
     // All of the i values are the y axis
+    
+    
     // Vertical wins
-
     for (let j = 0; j < 7; j++) {
 
         for (let i = 0; i < 4; i++) {
-            possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j][i + 1], slotsArray.slots[j][i + 2], slotsArray.slots[j][i + 3]])
+            let verticalWins = [slotsArray.slots[j][i], slotsArray.slots[j][i + 1], slotsArray.slots[j][i + 2], slotsArray.slots[j][i + 3]];
+            let reverseVerticalWins = verticalWins.slice().reverse();
+            possibilities.push(verticalWins, reverseVerticalWins);
         }
 
     }
@@ -166,34 +169,41 @@ function winningPossibilities() {
     //Horizontal winnings 
     for (let j = 0; j < 4; j++) {
         for (let i = 0; i < 7; i++) {
-            possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i], slotsArray.slots[j + 2][i], slotsArray.slots[j + 3][i]]);
+            let HorizontalWins = [slotsArray.slots[j][i], slotsArray.slots[j + 1][i], slotsArray.slots[j + 2][i], slotsArray.slots[j + 3][i]];
+            let reverseHorizontalWins = HorizontalWins.slice().reverse();
+            possibilities.push(HorizontalWins, reverseHorizontalWins);
+
         }
     }
-
     //Diagnal win from the top Left to the right down
     for (let j = 0; j < 4; j++) {
         for (let i = 0; i < 4; i++) {
+            let DiagonalFromTheTopLeftToTheBottomRightWins = [slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]];
+            let reverseDiagonalFromTheTopLeftToTheBottomRightWins = DiagonalFromTheTopLeftToTheBottomRightWins.slice().reverse();
 
-         possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j + 1][i + 1], slotsArray.slots[j + 2][i + 2], slotsArray.slots[j + 3][i + 3]]);
+            possibilities.push(DiagonalFromTheTopLeftToTheBottomRightWins, reverseDiagonalFromTheTopLeftToTheBottomRightWins);
         }
 
     }
-    
+
 
     // Diagonal wins from the top right to left down
     for (let j = 3; j < 7; j++) {
         for (let i = 0; i < 4; i++) {
-            possibilities.push([slotsArray.slots[j][i], slotsArray.slots[j - 1][i + 1], slotsArray.slots[j - 2][i + 2], slotsArray.slots[j - 3][i + 3]]);
+            let Diagnal = [slotsArray.slots[j][i], slotsArray.slots[j - 1][i + 1], slotsArray.slots[j - 2][i + 2], slotsArray.slots[j - 3][i + 3]]
+            let reverseDiagnol = Diagnal.slice().reverse();
+            possibilities.push(Diagnal, reverseDiagnol);
         }
     }
+    //console.log(reverseDiagnol)
 
+    console.log("Possibilities", possibilities);
 
     return possibilities;
 
 }
-let gif = []
-let allWinningPossibilities = winningPossibilities();
-console.log(allWinningPossibilities);
+winningPossibilities();
+//console.log(allWinningPossibilities);
 
 function mappingTheWinnerCombinations(filledSlot) {
     let filledSlotPosition = filledSlot.position
@@ -205,18 +215,18 @@ function mappingTheWinnerCombinations(filledSlot) {
             if (possibilities[k][j]) {
                 if (possibilities[k][j].position.x == filledSlotPosition.x && possibilities[k][j].position.y == filledSlotPosition.y) {
                     //console.log(possibilities[k], possibilities[k][j].position.x, possibilities[k][j].position.y);
-                    
-                    
-                    
-                    if (possibilities[k][j] && possibilities[k][j+1] && possibilities[k][j+2] && possibilities[k][j+3] && possibilities[k][j].color == filledSlotColor) {
-                        console.log(possibilities[k][j], possibilities[k][j+1], possibilities[k][j+2], possibilities[k][j+3])
 
-                        if(possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red"){
+
+
+                    if (possibilities[k][j] && possibilities[k][j + 1] && possibilities[k][j + 2] && possibilities[k][j + 3] && possibilities[k][j].color == filledSlotColor) {
+                        console.log(possibilities[k][j], possibilities[k][j + 1], possibilities[k][j + 2], possibilities[k][j + 3])
+
+                        if (possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red") {
 
                             console.log("Player 1 wins")
                             let screenBlocker = document.createElement("div");
                             //let celebration = document.createElement("img")
-                            
+
                             screenBlocker.id = "screenBlockerId";
                             let pTagRed = document.createElement("p");
                             pTagRed.style.backgroundColor = "black"
@@ -227,10 +237,10 @@ function mappingTheWinnerCombinations(filledSlot) {
                             screenBlocker.append(pTagRed)
                             document.body.append(screenBlocker)
 
-                        }else if(possibilities[k][j].color == "blue" && possibilities[k][j+1].color == "blue" && possibilities[k][j+2].color == "blue" && possibilities[k][j+3].color == "blue"){
+                        } else if (possibilities[k][j].color == "blue" && possibilities[k][j + 1].color == "blue" && possibilities[k][j + 2].color == "blue" && possibilities[k][j + 3].color == "blue") {
                             console.log("Player 2 wins")
                             let screenBlocker = document.createElement("div")
-                            
+
                             screenBlocker.id = "screenBlockerId"
                             let pTagBlue = document.createElement("p")
                             pTagBlue.style.backgroundColor = "black"
@@ -240,27 +250,28 @@ function mappingTheWinnerCombinations(filledSlot) {
                             pTagBlue.innerHTML = "Player 2 Wins"
                             screenBlocker.append(pTagBlue)
                             document.body.append(screenBlocker)
-                            
 
-                        }else if (Turn == 42){
+
+                        }
+                        else if (Turn == 42) {
                             console.log("Tie")
                             let screenBlocker = document.createElement("div");
-                            
+
                             screenBlocker.id = "screenBlockerId";
-                            let pTagTie = document.createElement("p");
-                            pTagTie.style.backgroundColor = "black";
-                            pTagTie.style.borderRadius = "10px";
-                            pTagTie.style.color = "white";
-                            pTagTie.style.padding = "15px";
-                            pTagTie.innerHTML = "Yall both suck";
-                            screenBlocker.append(pTagTie);
+                            let pTagBlue = document.createElement("p");
+                            pTagBlue.style.backgroundColor = "black";
+                            pTagBlue.style.borderRadius = "10px";
+                            pTagBlue.style.color = "white";
+                            pTagBlue.style.padding = "15px";
+                            pTagBlue.innerHTML = "Yall both suck";
+                            screenBlocker.append(pTagBlue);
                             document.body.append(screenBlocker);
-                            
+
                         }
 
                     }
                 }
-              
+
             }
 
         }
