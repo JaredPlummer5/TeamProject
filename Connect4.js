@@ -113,19 +113,22 @@ function board() {
             let position = 0;
             let id = null;
             console.log(id)
-            //clearInterval(id);
+            clearInterval(id);
             id = setInterval(frame, 0);
             function frame() {
                 if (position == slotRect.top) {
                     console.log("You've made it")
                     clearInterval(id);
                     screenBlocker.remove();
+                    slotToFill.style.backgroundColor = fallingDiv.style.backgroundColor
                 } else {
                     position++;
                     djProofFunction(screenBlocker);
                     fallingDiv.style.top = position + "px";
+                    slotToFill.style.backgroundColor = "white"
                 }
             }
+            //SelectedPlayer(slotToFill);
             
             SelectedPlayer(slotToFill);
             fallingDiv.style.backgroundColor = slotToFill.style.backgroundColor
@@ -274,27 +277,27 @@ function mappingTheWinnerCombinations(filledSlot) {
                             let screenBlocker = document.createElement("div");
                             
                             console.log(verticalWinsForHr[k])
-                            if (verticalWinsForHr[k].includes(possibilities[k][j] && possibilities[k][j + 1] && possibilities[k][j + 2] && possibilities[k][j + 3]) || verticalWinsForHr[k] !== undefined) {
-                                let winningPlaceHoders = document.querySelector(`#${possibilities[k][j].placeHolder}`)
-                                let winningPlaceHoders2 = document.querySelector(`#${possibilities[k][j + 1].placeHolder}`)
-                                let winningPlaceHoders3 = document.querySelector(`#${possibilities[k][j + 2].placeHolder}`)
-                                let winningPlaceHoders4 = document.querySelector(`#${possibilities[k][j + 3].placeHolder}`)
-                                console.log(winningPlaceHoders)
-                                let hr = document.createElement("hr");
-                                let hr2 = document.createElement("hr");
-                                let hr3 = document.createElement("hr");
-                                let hr4 = document.createElement("hr");
-                                hr.id = "hr";
+                            // if (possibilities[k][j].color == "red" && possibilities[k][j + 1].color == "red" && possibilities[k][j + 2].color == "red" && possibilities[k][j + 3].color == "red") {
+                            //     let winningPlaceHoders = document.querySelector(`#${possibilities[k][j].placeHolder}`)
+                            //     let winningPlaceHoders2 = document.querySelector(`#${possibilities[k][j + 1].placeHolder}`)
+                            //     let winningPlaceHoders3 = document.querySelector(`#${possibilities[k][j + 2].placeHolder}`)
+                            //     let winningPlaceHoders4 = document.querySelector(`#${possibilities[k][j + 3].placeHolder}`)
+                            //     console.log(winningPlaceHoders)
+                                // let hr = document.createElement("hr");
+                                // let hr2 = document.createElement("hr");
+                                // let hr3 = document.createElement("hr");
+                                // let hr4 = document.createElement("hr");
+                                // hr.id = "hr";
 
-                                winningPlaceHoders.append(hr);
-                                winningPlaceHoders2.append(hr2);
-                                winningPlaceHoders3.append(hr3);
-                                winningPlaceHoders4.append(hr4);
+                                // winningPlaceHoders.append(hr);
+                                // winningPlaceHoders2.append(hr2);
+                                // winningPlaceHoders3.append(hr3);
+                                // winningPlaceHoders4.append(hr4);
 
-                                hr.style.rotate = "90deg";
-                                hr2.style.rotate = "90deg";
-                                hr3.style.rotate = "90deg";
-                                hr4.style.rotate = "90deg";
+                                // hr.style.rotate = "90deg";
+                                // hr2.style.rotate = "90deg";
+                                // hr3.style.rotate = "90deg";
+                                // hr4.style.rotate = "90deg";
 
                                 screenBlocker.id = "screenBlockerId";
                                 let pTagRed = document.createElement("p");
@@ -307,52 +310,6 @@ function mappingTheWinnerCombinations(filledSlot) {
                                 document.body.append(screenBlocker)
 
                             }
-                            // else if (verticalWinsForHr[k] == undefined) {
-                            //     for (let h = 0; h < horizontalWinsForHr.length; h++) {
-                            //         if (horizontalWinsForHr[h].includes((possibilities[k][j] && possibilities[k][j + 1] && possibilities[k][j + 2] && possibilities[k][j + 3]))) {
-
-                            //             console.log("true");
-
-                            //         }
-                            //     }
-                            // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             else if (possibilities[k][j].color == "blue" && possibilities[k][j + 1].color == "blue" && possibilities[k][j + 2].color == "blue" && possibilities[k][j + 3].color == "blue") {
                                 console.log("Player 2 wins")
@@ -395,7 +352,7 @@ function mappingTheWinnerCombinations(filledSlot) {
         }
     }
 
-}
+
 
 
 console.log(slotsArray.slots);
